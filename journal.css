@@ -2,10 +2,7 @@ h1{
     text-align: center;
 } 
 
-form {
+fieldset {
     display: flex;
     flex-direction: column;
-    flex-basis: 25%;
-    margin-left: 15%;
-    margin-right: 15%;
 }
