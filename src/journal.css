@@ -6,3 +6,8 @@ fieldset {
     display: flex;
     flex-direction: column;
 }
+
+.entryLog div  {
+    border: 2px solid black;
+    margin: 10px;
+}
