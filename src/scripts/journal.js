@@ -1,15 +1,15 @@
+import{recordBtnListener} from "./entriesDOM.js"
+import{getJournalEntries} from "./data.js"
+import{listEntries} from "./entryComponent.js"
 
 
-/*
-    Main application logic that uses the functions and objects
-    defined in the other JavaScript files.
+getJournalEntries()
+.then((entryData)=> listEntries(entryData))
+recordBtnListener()
 
-    Change the fake variable names below to what they should be
-    to get the data and display it.
-*/
-API.getJournalEntries().then(allJournalEntries => funcForDom.appendJournalEntriesToDom(allJournalEntries))
 
- 
+
+
 
 
 
