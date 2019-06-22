@@ -20,7 +20,16 @@ function addNewJournalEntry(newEntry){
     })
 }
 
-export {getJournalEntries, addNewJournalEntry}
+function deleteJournalEntry(id) {
+    return fetch(`http://localhost:8088/journalEntries/${id}`, {
+      method: "DELETE",
+      headers:{
+        "Content-Type": "application/json"
+      }
+    })
+  }
+
+export {getJournalEntries, addNewJournalEntry, deleteJournalEntry}
 
 
 

@@ -1,5 +1,6 @@
 import { addNewJournalEntry, getJournalEntries } from "./data.js";
 import { listEntries, entryContainer } from "./entryComponent.js";
+import {formValidation, formValidationCharacters, conceptInputLength} from "./formValidation.js"
 
 let journalDate = document.querySelector("#journalDate");
 let conceptsCovered = document.querySelector("#conceptsCovered");
@@ -11,7 +12,7 @@ function recordBtnListener() {
     event.preventDefault();
     let formVal = formValidation();
     let checkChar = formValidationCharacters();
-    let checkConcept = conceptLength();
+    let checkConcept = conceptInputLength();
     if (formVal === true && checkConcept === true && checkChar === true) {
       let newEntry = buildJournalEntry(
         journalDate,
@@ -31,44 +32,6 @@ function recordBtnListener() {
   });
 }
 
-function formValidation() {
-  if (journalDate.value == "") {
-    alert("Please enter date!");
-    return false;
-  } else if (conceptsCovered.value == "") {
-    alert("Please enter Concepts Covered!");
-    return false;
-  } else if (journalEntry.value == "") {
-    alert("Please fill in Journal Entry!");
-    return false;
-  } else if (moodForDay.value == "") {
-    alert("Please select a Mood!");
-    return false;
-  }
-  return true;
-}
-
-function formValidationCharacters() {
-  let allowedChar = /^[0-9a-zA-Z()/{}:;. ]+$/;
-  if (
-    conceptsCovered.value.match(allowedChar) &&
-    journalEntry.value.match(allowedChar)
-  ) {
-    return true;
-  } else {
-    alert("Please use approved characters only");
-    return false;
-  }
-}
-
-function conceptLength() {
-  if (conceptsCovered.value.length > 25) {
-    alert("Please use less then 25 characters in Concepts Covered!");
-    return false;
-  }
-  return true;
-}
-
 function buildJournalEntry(
   journalDate,
   conceptsCovered,
@@ -83,7 +46,8 @@ function buildJournalEntry(
   };
 }
 
-document.getElementsByName("moodBtn").forEach(radioBtn => {
+function filterEntriesByMood() {
+  document.getElementsByName("moodBtn").forEach(radioBtn => {
   radioBtn.addEventListener("click", event => {
     const mood = event.target.value;
     getJournalEntries().then(entries => {
@@ -95,5 +59,6 @@ document.getElementsByName("moodBtn").forEach(radioBtn => {
     });
   });
 });
+}
 
-export { recordBtnListener };
+export { recordBtnListener,filterEntriesByMood };
