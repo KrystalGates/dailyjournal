@@ -16,7 +16,7 @@ function journalEntryComponent1 (journalEntry) {
   }
 
 
-export{journalEntryComponent1, listEntries}
+export{journalEntryComponent1, listEntries, entryContainer}
 
 
 
