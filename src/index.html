@@ -39,11 +39,21 @@
       </fieldset>
     </form>
       <button id="saveBtn">Record Journal Entry</button>
+      <fieldset>
+        <legend>Filter Journal Entries by Mood</legend>
+        <input type="radio" name="moodBtn" id="excited" value="excited"> 
+        <label for="moodBtn">Excited</label>
+        <input type="radio" name="moodBtn" id="happy" value="happy"> 
+        <label for="moodBtn">Happy</label>
+        <input type="radio" name="moodBtn" id="sad" value="sad"> 
+        <label for="moodBtn">Sad</label>
+        <input type="radio" name="moodBtn" id="indifferent" value="indifferent"> 
+        <label for="moodBtn">Indifferent</label>
+        <input type="radio" name="moodBtn" id="weirdDay" value="weirdDay"> 
+        <label for="moodBtn">Been a weird day</label>
+      </fieldset>
+      
     <article class="entryLog"></article>
     <script type="module" src="scripts/journal.js"></script>
-    <!-- <script src="scripts/data.js"></script>
-    <script src="scripts/entryComponent.js"></script>
-    <script src="scripts/entriesDOM.js"></script>
-    <script src="scripts/journal.js"></script> -->
   </body>
 </html>

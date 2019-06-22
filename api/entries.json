@@ -27,6 +27,13 @@
       "journalEntry": "We covered deleting data in json through fetching.",
       "moodForDay": "happy",
       "id": 4
+    },
+    {
+      "journalDate": "2019-06-20",
+      "conceptsCovered": "At Home Lab Day",
+      "journalEntry": "Gathered with over students to study and catch up on work",
+      "moodForDay": "excited",
+      "id": 5
     }
   ]
 }
