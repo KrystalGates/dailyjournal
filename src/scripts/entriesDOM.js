@@ -1,4 +1,4 @@
-import { addNewJournalEntry, getJournalEntries } from "./data.js";
+import { addNewJournalEntry, getJournalEntries, updateEntry } from "./data.js";
 import { listEntries, entryContainer } from "./entryComponent.js";
 import {formValidation, formValidationCharacters, conceptInputLength} from "./formValidation.js"
 
@@ -7,9 +7,11 @@ let conceptsCovered = document.querySelector("#conceptsCovered");
 let journalEntry = document.querySelector("#journalEntry");
 let moodForDay = document.querySelector("#moodForDay");
 
-function recordBtnListener() {
-  document.querySelector("#saveBtn").addEventListener("click", () => {
+function recordEntryBtnListener() {
+  document.querySelector("#saveBtn").addEventListener("click", event => {
     event.preventDefault();
+    const hiddenValue = document.querySelector("#hiddenInput").value
+    console.log(hiddenValue)
     let formVal = formValidation();
     let checkChar = formValidationCharacters();
     let checkConcept = conceptInputLength();
@@ -20,16 +22,25 @@ function recordBtnListener() {
         journalEntry,
         moodForDay
       );
-      addNewJournalEntry(newEntry);
-      console
-        .log(newEntry)
+      if(hiddenValue !== ""){
+        newEntry.id = parseInt(hiddenValue)
+        updateEntry(newEntry)
+        .then(data => data.json()
+        .then(dataJS => {
+        entryContainer.innerHTML = "";
+        getJournalEntries().then(entryData => listEntries(entryData)); 
+        hiddenValue = ""
+        }))
+      }
+      else{
+      addNewJournalEntry(newEntry)
         .then(data => data.json())
         .then(dataJS => {
           entryContainer.innerHTML = "";
           getJournalEntries().then(entryData => listEntries(entryData));
         });
-    }
-  });
+  }}
+});
 }
 
 function buildJournalEntry(
@@ -46,19 +57,21 @@ function buildJournalEntry(
   };
 }
 
+
 function filterEntriesByMood() {
   document.getElementsByName("moodBtn").forEach(radioBtn => {
   radioBtn.addEventListener("click", event => {
     const mood = event.target.value;
     getJournalEntries().then(entries => {
-      const filterExcited = entries.filter(
+      const filterMoodArr = entries.filter(
         entry => entry["moodForDay"] === mood
       )
       entryContainer.innerHTML = "";
-      listEntries(filterExcited);
+      listEntries(filterMoodArr);
     });
   });
 });
 }
 
-export { recordBtnListener,filterEntriesByMood };
+
+export { recordEntryBtnListener, buildJournalEntry,filterEntriesByMood};
