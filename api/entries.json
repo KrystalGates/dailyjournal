@@ -2,14 +2,14 @@
   "journalEntries": [
     {
       "id": 1,
-      "journalDate": "05/20/2019",
+      "journalDate": "2019-05-20",
       "conceptsCovered": "How to operate in the terminal, how to use code editor, HTML basics",
       "journalEntry": "Today we learned how to make commands on the command line in the terminal including how to make directories and files and how to move from directory to directory. We also went over basic HTML as familarized ourselves with VSCODE our code editor",
-      "moodForDay": "Excited"
+      "moodForDay": "excited"
     },
     {
       "id": 2,
-      "journalDate": "06/04/2019",
+      "journalDate": "2019-06-04",
       "conceptsCovered": "How to build the DOM using components",
       "journalEntry": "Today has been a bit rough. Learning how to write multiple functions then injecting them into the DOM",
       "moodForDay": "indifferent"

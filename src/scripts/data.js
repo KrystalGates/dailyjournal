@@ -1,11 +1,6 @@
 function getJournalEntries () {
         return fetch("http://localhost:8088/journalEntries")
             .then(response => response.json())
-            // .then (response => {
-            //     response.forEach( entry => {
-            //         entryContainer.innerHTML += journalEntryComponent1(entry)
-            //     });
-            // })
     }
 
 
@@ -29,7 +24,17 @@ function deleteJournalEntry(id) {
     })
   }
 
-export {getJournalEntries, addNewJournalEntry, deleteJournalEntry}
+  function updateEntry(updatedEntry) {
+    return fetch(`http://localhost:8088/journalEntries/${updatedEntry.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedEntry)
+    })
+  }
+
+export {getJournalEntries, addNewJournalEntry, deleteJournalEntry, updateEntry}
 
 
 
