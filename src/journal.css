@@ -1,13 +1,38 @@
-h1{
-    text-align: center;
-} 
-
-fieldset {
-    display: flex;
-    flex-direction: column;
+h1 {
+  text-align: center;
 }
 
-.entryLog div  {
-    border: 2px solid black;
-    margin: 10px;
+.mainContainer {
+  width: 800px;
+  margin: auto;
+}
+
+.form {
+  width: 500px;
+  margin: auto;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+.entryLog div {
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.moodContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.search {
+  display: flex;
+  flex-basis: 50%;
 }
