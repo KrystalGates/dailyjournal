@@ -1,11 +1,11 @@
 {
   "journalEntries": [
     {
-      "id": 1,
       "journalDate": "2019-05-20",
-      "conceptsCovered": "How to operate in the terminal, how to use code editor, HTML basics",
+      "conceptsCovered": "How to operate in the terminal, VScode, HTML",
       "journalEntry": "Today we learned how to make commands on the command line in the terminal including how to make directories and files and how to move from directory to directory. We also went over basic HTML as familarized ourselves with VSCODE our code editor",
-      "moodForDay": "excited"
+      "moodForDay": "excited",
+      "id": 1
     },
     {
       "id": 2,
@@ -34,6 +34,13 @@
       "journalEntry": "Gathered with over students to study and catch up on work",
       "moodForDay": "excited",
       "id": 5
+    },
+    {
+      "journalDate": "0067-07-06",
+      "conceptsCovered": "kjgukh",
+      "journalEntry": "ygiugigig HELO! yoyo",
+      "moodForDay": "excited",
+      "id": 6
     }
   ]
 }

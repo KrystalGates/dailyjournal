@@ -1,6 +1,10 @@
 import { addNewJournalEntry, getJournalEntries, updateEntry } from "./data.js";
 import { listEntries, entryContainer } from "./entryComponent.js";
-import {formValidation, formValidationCharacters, conceptInputLength} from "./formValidation.js"
+import {
+  formValidation,
+  formValidationCharacters,
+  conceptInputLength
+} from "./formValidation.js";
 
 let journalDate = document.querySelector("#journalDate");
 let conceptsCovered = document.querySelector("#conceptsCovered");
@@ -10,8 +14,8 @@ let moodForDay = document.querySelector("#moodForDay");
 function recordEntryBtnListener() {
   document.querySelector("#saveBtn").addEventListener("click", event => {
     event.preventDefault();
-    const hiddenValue = document.querySelector("#hiddenInput").value
-    console.log(hiddenValue)
+    const hiddenValue = document.querySelector("#hiddenInput").value;
+    console.log(hiddenValue);
     let formVal = formValidation();
     let checkChar = formValidationCharacters();
     let checkConcept = conceptInputLength();
@@ -22,25 +26,25 @@ function recordEntryBtnListener() {
         journalEntry,
         moodForDay
       );
-      if(hiddenValue !== ""){
-        newEntry.id = parseInt(hiddenValue)
-        updateEntry(newEntry)
-        .then(data => data.json()
-        .then(dataJS => {
-        entryContainer.innerHTML = "";
-        getJournalEntries().then(entryData => listEntries(entryData)); 
-        hiddenValue = ""
-        }))
+      if (hiddenValue !== "") {
+        newEntry.id = parseInt(hiddenValue);
+        updateEntry(newEntry).then(data =>
+          data.json().then(dataJS => {
+            entryContainer.innerHTML = "";
+            getJournalEntries().then(entryData => listEntries(entryData));
+            hiddenValue = "";
+          })
+        );
+      } else {
+        addNewJournalEntry(newEntry)
+          .then(data => data.json())
+          .then(dataJS => {
+            entryContainer.innerHTML = "";
+            getJournalEntries().then(entryData => listEntries(entryData));
+          });
       }
-      else{
-      addNewJournalEntry(newEntry)
-        .then(data => data.json())
-        .then(dataJS => {
-          entryContainer.innerHTML = "";
-          getJournalEntries().then(entryData => listEntries(entryData));
-        });
-  }}
-});
+    }
+  });
 }
 
 function buildJournalEntry(
@@ -57,21 +61,64 @@ function buildJournalEntry(
   };
 }
 
-
 function filterEntriesByMood() {
   document.getElementsByName("moodBtn").forEach(radioBtn => {
-  radioBtn.addEventListener("click", event => {
-    const mood = event.target.value;
-    getJournalEntries().then(entries => {
-      const filterMoodArr = entries.filter(
-        entry => entry["moodForDay"] === mood
-      )
-      entryContainer.innerHTML = "";
-      listEntries(filterMoodArr);
+    radioBtn.addEventListener("click", event => {
+      const mood = event.target.value;
+      getJournalEntries().then(entries => {
+        const filterMoodArr = entries.filter(
+          entry => entry["moodForDay"] === mood
+        );
+        entryContainer.innerHTML = "";
+        listEntries(filterMoodArr);
+      });
     });
   });
-});
 }
 
+function searchEntries() {
+  document.querySelector("#searchInput").addEventListener("keypress", event => {
+    if (event.keyCode === 13) {
+      let searchInput = document.querySelector("#searchInput").value;
+      let searchInputLowerCase = searchInput.toLowerCase();
+      let searchResultsArr = [];
+      getJournalEntries().then(entries => {
+        entries.forEach(entry => {
+          let entryToLowerCase = {
+            date: entry.journalDate,
+            concepts: entry.conceptsCovered.toLowerCase(),
+            entry: entry.journalEntry.toLowerCase(),
+            mood: entry.moodForDay.toLowerCase()
+          };
+          for (const value of Object.values(entryToLowerCase)) {
+            if (
+              value.includes(searchInputLowerCase) === true &&
+              !searchResultsArr.includes(entry)
+            ) {
+              searchResultsArr.push(entry);
+            }
+          }
+        });
+        entryContainer.innerHTML = "";
+        listEntries(searchResultsArr);
+      });
+    }
+  });
+}
 
-export { recordEntryBtnListener, buildJournalEntry,filterEntriesByMood};
+function clearSearch() {
+  document.querySelector("#clearSearchBtn").addEventListener("click", event => {
+    getJournalEntries().then(entryData => {
+      entryContainer.innerHTML = "";
+      listEntries(entryData);
+    });
+  });
+}
+
+export {
+  recordEntryBtnListener,
+  buildJournalEntry,
+  filterEntriesByMood,
+  searchEntries,
+  clearSearch
+};
