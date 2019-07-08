@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="journal.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
     <title>Daily Journal</title>
   </head>
   <body>
     <article class="mainContainer">
       <h1>Daily Journal</h1>
+      <section>
       <form class="form">
         <fieldset>
           <label for="journalDate">Date of Entry</label>
@@ -37,9 +38,9 @@
             <option value="indifferent">Indifferent</option>
           </select>
         </fieldset>
-        <button id="saveBtn">Record Journal Entry</button>
       </form>
-      <!-- <button id="saveBtn">Record Journal Entry</button> -->
+      <button id="saveBtn">Record Journal Entry</button>
+    </section>
       <section class="search">
         <fieldset class="filterMood">
           <input type="hidden" id="hiddenInput" value="" />
@@ -82,6 +83,5 @@
       </section>
       <article class="entryLog"></article>
     </article>
-    <script type="module" src="scripts/journal.js"></script>
   </body>
 </html>

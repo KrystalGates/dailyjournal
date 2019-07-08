@@ -1,13 +1,55 @@
-import { deleteJournalEntry } from "./data.js";
+import { deleteJournalEntry, getJournalEntries, addNewJournalEntry, updateEntry } from "./data.js";
+import {listEntries} from "./entriesDOM.js"
+import {buildJournalEntry} from "./helpers.js"
+import {formValidation, formValidationCharacters, conceptInputLength} from "./formValidation.js";
+
+function recordEntryBtnListener() {
+  document.querySelector("#saveBtn").addEventListener("click", event => {
+    event.preventDefault();
+    let journalDate = document.querySelector("#journalDate");
+    let conceptsCovered = document.querySelector("#conceptsCovered");
+    let journalEntry = document.querySelector("#journalEntry");
+    let moodForDay = document.querySelector("#moodForDay");
+    const hiddenValue = document.querySelector("#hiddenInput").value;
+    let formVal = formValidation();
+    let checkChar = formValidationCharacters();
+    let checkConcept = conceptInputLength();
+    if (formVal === true && checkConcept === true && checkChar === true) {
+      let newEntry = buildJournalEntry(
+        journalDate,
+        conceptsCovered,
+        journalEntry,
+        moodForDay
+      );
+      if (hiddenValue !== "") {
+        newEntry.id = parseInt(hiddenValue);
+        saveBtn.innerHTML = "Record Journal Entry"
+        updateEntry(newEntry).then(dataJS => {
+            getJournalEntries().then(entryData => listEntries(entryData));
+            hiddenValue = "";
+          })
+        ;
+      } else {
+        addNewJournalEntry(newEntry)
+          .then(dataJS => {
+            getJournalEntries().then(entryData => listEntries(entryData));
+          });
+      }
+    }
+    document.querySelector(".form").reset()
+  });
+}
 
 function deleteBtnListener(event) {
   let id = event.target.id;
   deleteJournalEntry(id).then(data => {
-    listEntries();
+    getJournalEntries()
+    .then(entryData => listEntries(entryData));
   });
 }
 
 function editBtnListener(event) {
+  document.querySelector("#journalDate").focus()
   let date = document.querySelector("#journalDate");
   let concepts = document.querySelector("#conceptsCovered");
   let entry = document.querySelector("#journalEntry");
@@ -29,4 +71,4 @@ function editBtnListener(event) {
     });
 }
 
-export { deleteBtnListener, editBtnListener };
+export { recordEntryBtnListener, deleteBtnListener, editBtnListener };
