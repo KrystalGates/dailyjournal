@@ -1,13 +1,5 @@
 import { deleteBtnListener, editBtnListener } from "./events.js";
 
-const entryContainer = document.querySelector(".entryLog");
-
-function listEntries(entryArr) {
-  entryArr.forEach(entry => {
-    entryContainer.appendChild(journalEntryComponent1(entry));
-  });
-}
-
 function journalEntryComponent1(journalEntry) {
   let el = document.createElement("div");
   let deleteBtn = document.createElement("button");
@@ -30,4 +22,4 @@ function journalEntryComponent1(journalEntry) {
   return el;
 }
 
-export { journalEntryComponent1, listEntries, entryContainer };
+export { journalEntryComponent1 };

@@ -5,7 +5,6 @@ function getJournalEntries() {
 }
 
 function addNewJournalEntry(newEntry) {
-  console.log(newEntry);
   return fetch("http://localhost:8088/journalEntries", {
     method: "POST",
     headers: {

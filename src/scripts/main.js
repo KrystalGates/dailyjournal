@@ -1,11 +1,11 @@
 import {
-  recordEntryBtnListener,
-  filterEntriesByMood,
+  recordEntryBtnListener
+} from "./events.js";
+import {filterEntriesByMood,
   searchEntries,
-  clearSearch
-} from "./entriesDOM.js";
+  clearSearch } from "./filterEntries.js"
 import { getJournalEntries } from "./data.js";
-import { listEntries } from "./entryComponent.js";
+import { listEntries } from "./entriesDOM";
 
 getJournalEntries().then(entryData => listEntries(entryData));
 recordEntryBtnListener();

@@ -1,14 +1,14 @@
 function formValidation() {
-  if (journalDate.value == "") {
+  if (journalDate.value === "") {
     alert("Please enter date!");
     return false;
-  } else if (conceptsCovered.value == "") {
+  } else if (conceptsCovered.value === "") {
     alert("Please enter Concepts Covered!");
     return false;
-  } else if (journalEntry.value == "") {
+  } else if (journalEntry.value === "") {
     alert("Please fill in Journal Entry!");
     return false;
-  } else if (moodForDay.value == "") {
+  } else if (moodForDay.value === "") {
     alert("Please select a Mood!");
     return false;
   }

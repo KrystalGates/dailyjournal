@@ -8,13 +8,6 @@
       "id": 1
     },
     {
-      "id": 2,
-      "journalDate": "2019-06-04",
-      "conceptsCovered": "How to build the DOM using components",
-      "journalEntry": "Today has been a bit rough. Learning how to write multiple functions then injecting them into the DOM",
-      "moodForDay": "indifferent"
-    },
-    {
       "journalDate": "2019-06-18",
       "conceptsCovered": "Shaping Data with Array Methods",
       "journalEntry": "We went over methods for arrays such as sort, map, filter, reduce etc. ",
@@ -34,13 +27,6 @@
       "journalEntry": "Gathered with over students to study and catch up on work",
       "moodForDay": "excited",
       "id": 5
-    },
-    {
-      "journalDate": "0067-07-06",
-      "conceptsCovered": "kjgukh",
-      "journalEntry": "ygiugigig HELO! yoyo",
-      "moodForDay": "excited",
-      "id": 6
     }
   ]
 }
